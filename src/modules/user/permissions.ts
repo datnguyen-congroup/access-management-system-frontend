@@ -1,0 +1,8 @@
+import { APP_PERMISSIONS } from '../../app/permissions';
+
+export const userPermissions = {
+  VIEW: APP_PERMISSIONS.USERS_VIEW,
+  CREATE: APP_PERMISSIONS.USERS_CREATE,
+  EDIT: APP_PERMISSIONS.USERS_EDIT,
+  DELETE: APP_PERMISSIONS.USERS_DELETE,
+};

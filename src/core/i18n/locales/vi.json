@@ -1,0 +1,30 @@
+{
+  "translation": {
+    "common": {
+      "loading": "Đang tải...",
+      "error": "Đã xảy ra lỗi",
+      "actions": {
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "delete": "Xóa",
+        "edit": "Sửa",
+        "create": "Tạo",
+        "submit": "Gửi đi"
+      }
+    },
+    "auth": {
+      "login": "Đăng nhập",
+      "email": "Email",
+      "password": "Mật khẩu",
+      "loginSuccess": "Đăng nhập thành công"
+    },
+    "menu": {
+      "dashboard": "Bảng điều khiển",
+      "users": "Quản lý người dùng",
+      "forms": "Trang Biểu mẫu",
+      "formsBasic": "Biểu mẫu cơ bản",
+      "list": "Trang Danh sách",
+      "listStandard": "Danh sách tiêu chuẩn"
+    }
+  }
+}

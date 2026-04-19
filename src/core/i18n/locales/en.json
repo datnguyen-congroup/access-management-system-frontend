@@ -1,0 +1,30 @@
+{
+  "translation": {
+    "common": {
+      "loading": "Loading...",
+      "error": "An error occurred",
+      "actions": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "create": "Create",
+        "submit": "Submit"
+      }
+    },
+    "auth": {
+      "login": "Login",
+      "email": "Email",
+      "password": "Password",
+      "loginSuccess": "Login successful"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "users": "User Management",
+      "forms": "Form Pages",
+      "formsBasic": "Basic Form",
+      "list": "List Pages",
+      "listStandard": "Standard List"
+    }
+  }
+}
