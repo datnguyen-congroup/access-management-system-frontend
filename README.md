@@ -65,6 +65,7 @@ src/
 ## 💡 How to Use & Extend
 
 ### 1. Project Initialization & White-Labeling
+
 Copy `.env.example` to `.env`. This boilerplate automatically injects your customized environment application name into the browser tab and sidebar logo.
 
 ```env
@@ -75,9 +76,11 @@ VITE_APP_NAME="My Enterprise Admin"
 Configure your master roles and feature flags centrally inside `src/app/settings.ts`.
 
 ### 2. Adding a New Feature Module
+
 Every feature must live independently inside `src/modules/`. This prevents spaghetti code and ensures easy removal or testing of features.
 
 **Structure of a module (e.g., `src/modules/products/`):**
+
 1. `pages/ProductList.tsx`: The UI component (Table, Form).
 2. `hooks.ts`: React Query wrappers leveraging the core API layer.
 3. `routes.tsx`: Defines the router array with necessary `<AuthGuard>` protections.
@@ -103,6 +106,7 @@ export const useUsers = (params: Record<string, unknown>) => {
 
 **Protecting a Route:**
 Wrap the route element inside `src/modules/your-module/routes.tsx` with `<AuthGuard>`:
+
 ```tsx
 <AuthGuard requiredPermissions={[APP_PERMISSIONS.USERS_VIEW]}>
   <UserList />
@@ -111,14 +115,16 @@ Wrap the route element inside `src/modules/your-module/routes.tsx` with `<AuthGu
 
 **Protecting a Component/Button:**
 Use the `<PermissionGuard>` component to conditionally render UI:
+
 ```tsx
 import { PermissionGuard } from '@/core/permissions/PermissionGuard';
 
 <PermissionGuard permissions={APP_PERMISSIONS.USERS_DELETE}>
   <Button danger>Delete</Button>
-</PermissionGuard>
+</PermissionGuard>;
 ```
-*Note: Any User possessing the `appSettings.superAdminRole` will automatically bypass these checks.*
+
+_Note: Any User possessing the `appSettings.superAdminRole` will automatically bypass these checks._
 
 ### 5. Type-Safe Internationalization (i18n)
 
@@ -134,16 +140,19 @@ const { t } = useTranslation();
 ## 🛠️ Commands
 
 1. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 2. **Run development server**:
+
    ```bash
    npm run dev
    ```
 
 3. **Check Linting & Types**:
+
    ```bash
    npm run lint
    ```
