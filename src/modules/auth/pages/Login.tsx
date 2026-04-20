@@ -1,10 +1,13 @@
-import React from 'react';
 import { Form, Input, Button, Card, Typography, message } from 'antd';
-import { useAuthStore } from '@/core/store/authStore';
-import { useNavigate } from 'react-router';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLogin } from '../hooks';
+import { Link, useNavigate } from 'react-router';
+
 import { appSettings } from '@/app/settings';
+import { useAuthStore } from '@/core/store/authStore';
+
+import { useLogin } from '../hooks';
+import { LoginRequest } from '../types';
 
 const { Title } = Typography;
 
@@ -14,8 +17,24 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
   const loginMutation = useLogin();
 
-  const onFinish = (values: Record<string, string>) => {
-    // Mock API call using the mutation's pending state manually or just setTimeout
+  // const {
+  //   data: userProfile,
+  //   isSuccess: isProfileSuccess,
+  //   refetch: refetchProfile
+  // } = useProfile();
+
+  const onFinish = (values: LoginRequest) => {
+    // loginMutation.mutate(values, {
+    //   onSuccess: (data) => {
+    //     storage.setToken(data.accessToken);
+    //     storage.setRefreshToken(data.refreshToken);
+    //     refetchProfile();
+    //   },
+    //   // onError: (error) => {
+    //   //   message.error(error.message || t('auth.loginError'));
+    //   // },
+    // });
+
     setTimeout(() => {
       login(
         {
@@ -39,14 +58,36 @@ export const Login: React.FC = () => {
         <Title level={3}>{t('auth.login')}</Title>
       </div>
       <Form layout="vertical" onFinish={onFinish}>
-        <Form.Item label={t('auth.email')} name="email" rules={[{ required: true, type: 'email' }]}>
-          <Input placeholder="admin@example.com" />
+        <Form.Item
+          label={t('auth.email')}
+          name="email"
+          rules={[
+            { required: true, message: t('auth.validation.emailRequired') },
+            { type: 'email', message: t('auth.validation.emailInvalid') },
+          ]}
+        >
+          <Input placeholder="admin@example.com" size="large" />
         </Form.Item>
-        <Form.Item label={t('auth.password')} name="password" rules={[{ required: true }]}>
-          <Input.Password placeholder="123456" />
+        <Form.Item
+          label={t('auth.password')}
+          name="password"
+          rules={[{ required: true, message: t('auth.validation.passwordRequired') }]}
+        >
+          <Input.Password placeholder="123456" size="large" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" block loading={loginMutation.isPending}>
+          <Link to="/forgot-password" style={{ float: 'right', marginBottom: 10 }}>
+            {t('auth.forgotPassword')}
+          </Link>
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            block
+            loading={loginMutation.isPending}
+          >
             {t('auth.login')}
           </Button>
         </Form.Item>

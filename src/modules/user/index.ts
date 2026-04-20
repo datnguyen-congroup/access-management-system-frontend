@@ -1,5 +1,5 @@
-import { routes } from './routes';
 import { userPermissions } from './permissions';
+import { routes } from './routes';
 
 export const userModule = {
   routes,

@@ -16,7 +16,26 @@
       "login": "Đăng nhập",
       "email": "Email",
       "password": "Mật khẩu",
-      "loginSuccess": "Đăng nhập thành công"
+      "loginSuccess": "Đăng nhập thành công",
+      "loginError": "Đăng nhập không thành công. Vui lòng kiểm tra thông tin đăng nhập của bạn.",
+      "forgotPassword": "Quên mật khẩu?",
+      "forgotPasswordInstructions": "Thêm hướng dẫn ở đây.",
+      "sendResetLink": "Gửi liên kết đặt lại",
+      "backToLogin": "Quay lại Đăng nhập",
+      "forgotPasswordSuccess": "Liên kết đặt lại mật khẩu đã được gửi đến {{email}}.",
+      "forgotPasswordError": "Không thể gửi liên kết đặt lại mật khẩu. Vui lòng thử lại.",
+      "resetPassword": "Đặt lại mật khẩu",
+      "newPassword": "Mật khẩu mới",
+      "confirmPassword": "Xác nhận mật khẩu mới",
+      "resetPasswordSuccess": "Mật khẩu của bạn đã được đặt lại thành công. Bây giờ bạn có thể đăng nhập bằng mật khẩu mới của mình.",
+      "resetPasswordError": "Không thể đặt lại mật khẩu. Liên kết có thể không hợp lệ hoặc đã hết hạn.",
+      "validation": {
+        "emailRequired": "Vui lòng nhập email của bạn",
+        "emailInvalid": "Vui lòng nhập email hợp lệ",
+        "passwordRequired": "Vui lòng nhập mật khẩu của bạn",
+        "confirmPasswordRequired": "Vui lòng xác nhận mật khẩu mới của bạn",
+        "passwordMismatch": "Hai mật khẩu bạn vừa nhập không khớp!"
+      }
     },
     "menu": {
       "dashboard": "Bảng điều khiển",

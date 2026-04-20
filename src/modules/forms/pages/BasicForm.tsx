@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Card,
   Form,
@@ -12,6 +11,7 @@ import {
   Typography,
   message,
 } from 'antd';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;

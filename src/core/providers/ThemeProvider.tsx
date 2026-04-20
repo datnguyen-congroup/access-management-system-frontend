@@ -1,7 +1,9 @@
-import React, { ReactNode } from 'react';
 import { ConfigProvider } from 'antd';
-import { useThemeStore } from '../store/themeStore';
+import React, { ReactNode } from 'react';
+
 import { lightTheme, darkTheme } from '@/app/theme';
+
+import { useThemeStore } from '../store/themeStore';
 
 interface ThemeProviderProps {
   children: ReactNode;

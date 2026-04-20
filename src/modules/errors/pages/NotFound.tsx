@@ -1,5 +1,5 @@
-import React from 'react';
 import { Result, Button } from 'antd';
+import React from 'react';
 import { useNavigate } from 'react-router';
 
 const NotFound: React.FC = () => {

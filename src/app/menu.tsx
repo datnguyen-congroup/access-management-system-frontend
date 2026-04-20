@@ -1,5 +1,4 @@
-import React from 'react';
-import { DashboardOutlined, UserOutlined, FormOutlined, TableOutlined } from '@ant-design/icons';
+import { DashboardOutlined, FormOutlined, TableOutlined, UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
 export const useAppMenu = () => {

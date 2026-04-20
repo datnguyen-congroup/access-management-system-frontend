@@ -1,16 +1,15 @@
 import { useQueryClient } from '@tanstack/react-query';
+
 import { useApiGet, useApiPost, useApiPut, useApiDelete } from '@/core/api/hooks';
 import { PaginatedResponse } from '@/core/api/types';
 
-export const useUsers = (params: Record<string, unknown>) => {
-  return useApiGet<PaginatedResponse<unknown>>(['users', params], '/users', params);
-};
+export const useUsers = (params: Record<string, unknown>) =>
+  useApiGet<PaginatedResponse<unknown>>(['users', params], '/users', params);
 
-export const useUser = (id: string) => {
-  return useApiGet<unknown>(['user', id], `/users/${id}`, undefined, {
+export const useUser = (id: string) =>
+  useApiGet<unknown>(['user', id], `/users/${id}`, undefined, {
     enabled: !!id,
   });
-};
 
 export const useCreateUser = () => {
   const queryClient = useQueryClient();

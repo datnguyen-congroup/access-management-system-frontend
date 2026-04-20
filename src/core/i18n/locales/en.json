@@ -16,7 +16,26 @@
       "login": "Login",
       "email": "Email",
       "password": "Password",
-      "loginSuccess": "Login successful"
+      "loginSuccess": "Login successful",
+      "loginError": "Login failed. Please check your credentials.",
+      "forgotPassword": "Forgot Password?",
+      "forgotPasswordInstructions": "More instructions here.",
+      "sendResetLink": "Send Reset Link",
+      "backToLogin": "Back to Login",
+      "forgotPasswordSuccess": "A password reset link has been sent to {{email}}.",
+      "forgotPasswordError": "Failed to send password reset link. Please try again.",
+      "resetPassword": "Reset Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "resetPasswordSuccess": "Your password has been reset successfully. You can now log in with your new password.",
+      "resetPasswordError": "Failed to reset password. The link may be invalid or expired.",
+      "validation": {
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Please enter a valid email",
+        "passwordRequired": "Please enter your password",
+        "confirmPasswordRequired": "Please confirm your new password",
+        "passwordMismatch": "The two passwords that you entered do not match!"
+      }
     },
     "menu": {
       "dashboard": "Dashboard",

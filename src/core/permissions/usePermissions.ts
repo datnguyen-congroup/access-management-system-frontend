@@ -1,5 +1,6 @@
-import { useAuthStore } from '../store/authStore';
 import { appSettings } from '@/app/settings';
+
+import { useAuthStore } from '../store/authStore';
 
 export const usePermissions = () => {
   const user = useAuthStore((state) => state.user);
@@ -13,13 +14,9 @@ export const usePermissions = () => {
     return user.permissions.includes(permission);
   };
 
-  const hasAnyPermission = (permissions: string[]): boolean => {
-    return permissions.some(hasPermission);
-  };
+  const hasAnyPermission = (permissions: string[]): boolean => permissions.some(hasPermission);
 
-  const hasAllPermissions = (permissions: string[]): boolean => {
-    return permissions.every(hasPermission);
-  };
+  const hasAllPermissions = (permissions: string[]): boolean => permissions.every(hasPermission);
 
   return {
     hasPermission,

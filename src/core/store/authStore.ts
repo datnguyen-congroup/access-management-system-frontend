@@ -1,7 +1,9 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { storage } from '../utils/storage';
+
 import { appSettings } from '@/app/settings';
+
+import { storage } from '../utils/storage';
 
 export interface User {
   id: string;

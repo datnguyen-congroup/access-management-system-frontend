@@ -1,5 +1,12 @@
-import React from 'react';
-import { Outlet, useNavigate, useLocation } from 'react-router';
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  BgColorsOutlined,
+  SettingOutlined,
+  GlobalOutlined,
+} from '@ant-design/icons';
 import {
   Layout,
   Menu,
@@ -12,21 +19,15 @@ import {
   Drawer,
   Grid,
 } from 'antd';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UserOutlined,
-  LogoutOutlined,
-  BgColorsOutlined,
-  SettingOutlined,
-  GlobalOutlined,
-} from '@ant-design/icons';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAuthStore } from '@/core/store/authStore';
-import { useThemeStore } from '@/core/store/themeStore';
-import { useSettingsStore } from '@/core/store/settingsStore';
+import { Outlet, useNavigate, useLocation } from 'react-router';
+
 import { useAppMenu } from '@/app/menu';
 import { appSettings } from '@/app/settings';
+import { useAuthStore } from '@/core/store/authStore';
+import { useSettingsStore } from '@/core/store/settingsStore';
+import { useThemeStore } from '@/core/store/themeStore';
 import { AppBreadcrumb } from '@/shared/components/AppBreadcrumb';
 
 const { Header, Sider, Content } = Layout;

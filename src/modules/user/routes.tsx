@@ -1,8 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { lazy } from 'react';
 import { RouteObject } from 'react-router';
-import { AuthGuard } from '../../core/router/AuthGuard';
+
 import { APP_PERMISSIONS } from '../../app/permissions';
+import { AuthGuard } from '../../core/router/AuthGuard';
 
 const UserList = lazy(() => import('./pages/UserList'));
 

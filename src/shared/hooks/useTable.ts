@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react';
 import { TablePaginationConfig } from 'antd';
 import { FilterValue, SorterResult } from 'antd/es/table/interface';
+import { useState, useCallback } from 'react';
 
 interface TableParams {
   pagination: TablePaginationConfig;

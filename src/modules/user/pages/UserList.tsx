@@ -1,7 +1,8 @@
-import React from 'react';
 import { Table, Button, Space, Typography, Card } from 'antd';
-import { PermissionGuard } from '../../../core/permissions/PermissionGuard';
+import React from 'react';
+
 import { APP_PERMISSIONS } from '../../../app/permissions';
+import { PermissionGuard } from '../../../core/permissions/PermissionGuard';
 
 const { Title } = Typography;
 

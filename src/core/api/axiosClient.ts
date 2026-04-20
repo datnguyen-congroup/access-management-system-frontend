@@ -1,6 +1,7 @@
-import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
-import { storage } from '../utils/storage';
+import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+
 import { useAuthStore } from '../store/authStore';
+import { storage } from '../utils/storage';
 
 const axiosClient: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
@@ -35,15 +36,11 @@ axiosClient.interceptors.request.use(
     }
     return config;
   },
-  (error: AxiosError) => {
-    return Promise.reject(error);
-  },
+  (error: AxiosError) => Promise.reject(error),
 );
 
 axiosClient.interceptors.response.use(
-  (response: AxiosResponse) => {
-    return response.data;
-  },
+  (response: AxiosResponse) => response.data,
   async (error: AxiosError) => {
     const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
 
@@ -58,9 +55,7 @@ axiosClient.interceptors.response.use(
             }
             return axiosClient(originalRequest);
           })
-          .catch((err) => {
-            return Promise.reject(err);
-          });
+          .catch((err) => Promise.reject(err));
       }
 
       originalRequest._retry = true;

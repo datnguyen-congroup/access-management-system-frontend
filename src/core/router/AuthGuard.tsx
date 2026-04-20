@@ -1,7 +1,8 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router';
-import { useAuthStore } from '../store/authStore';
+
 import { usePermissions } from '../permissions/usePermissions';
+import { useAuthStore } from '../store/authStore';
 
 interface AuthGuardProps {
   children: React.ReactElement;

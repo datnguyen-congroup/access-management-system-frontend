@@ -1,6 +1,7 @@
+import { Layout } from 'antd';
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router';
-import { Layout } from 'antd';
+
 import { useAuthStore } from '@/core/store/authStore';
 
 export const AuthLayout: React.FC = () => {

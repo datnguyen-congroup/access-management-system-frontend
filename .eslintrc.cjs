@@ -18,9 +18,12 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    'import/resolver': {
+      typescript: {},
+    },
   },
 
-  plugins: ['@typescript-eslint', 'react-hooks', 'react-refresh', 'import'],
+  plugins: ['@typescript-eslint', 'react-hooks', 'react-refresh', 'import', 'unused-imports'],
 
   extends: [
     'eslint:recommended',
@@ -45,13 +48,15 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
 
-    '@typescript-eslint/no-explicit-any': 'warn', // You can change it to error if you want it to be more strict
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-inferrable-types': 'off',
 
     /**
      *  Import rules
      */
+    'import/default': 'off',
+    'import/no-unresolved': 'off',
     'import/order': [
       'warn',
       {
@@ -70,8 +75,17 @@ module.exports = {
         },
       },
     ],
+    'unused-imports/no-unused-imports': 'error',
 
-    'import/no-unresolved': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
+    ],
 
     /**
      *  Prohibit relative import (very important)
