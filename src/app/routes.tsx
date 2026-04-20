@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { Suspense } from 'react';
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router';
 import { MainLayout } from '@/layouts/MainLayout/MainLayout';
 import { AuthLayout } from '@/layouts/AuthLayout/AuthLayout';
 import { ErrorLayout } from '@/layouts/ErrorLayout/ErrorLayout';

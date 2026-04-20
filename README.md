@@ -4,11 +4,11 @@ A modular, scalable, and reusable enterprise-grade React admin dashboard boilerp
 
 ## 🚀 Core Features
 
-- **Framework**: React 18 + TypeScript + Vite
+- **Framework**: React 19 + TypeScript + Vite
 - **UI System**: Ant Design (v5) providing a responsive Desktop & Mobile layout (Sidebar auto-collapses to Drawer).
 - **State Management**: Zustand (Clean, boilerplate-free global state).
 - **Data Fetching**: TanStack React Query + Axios (Includes built-in automated Token Rotation and Request Queuing on 401s).
-- **Routing**: React Router 6 (Data Router with comprehensive `<Suspense>` fallback handling).
+- **Routing**: React Router 7 (Unified package with Data Router and comprehensive `<Suspense>` fallback handling).
 - **Architecture**: Modular, feature-based architecture prioritizing horizontal scalability.
 - **Permissions**: Granular Role-Based Access Control (RBAC) at both the Route and Component level, complete with dynamic 'Super Admin' overrides.
 - **Multi-language**: i18next configured for dynamic English (`en`) & Vietnamese (`vi`) namespaces with Type Safety.

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, Card, Typography, message } from 'antd';
 import { useAuthStore } from '@/core/store/authStore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useLogin } from '../hooks';
 import { appSettings } from '@/app/settings';

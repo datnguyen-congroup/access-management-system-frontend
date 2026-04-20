@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { lazy } from 'react';
-import { RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router';
 import { AuthGuard } from '../../core/router/AuthGuard';
 import { APP_PERMISSIONS } from '../../app/permissions';
 
