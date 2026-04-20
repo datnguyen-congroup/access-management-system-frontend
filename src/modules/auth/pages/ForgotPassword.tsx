@@ -23,7 +23,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <Card style={{ width: 400 }}>
+    <Card style={{ maxWidth: 400, width: '100%' }}>
       <Title level={3} style={{ textAlign: 'center' }}>
         {t('auth.forgotPassword')}
       </Title>
@@ -36,10 +36,16 @@ const ForgotPassword = () => {
             { type: 'email', message: t('auth.validation.emailInvalid') },
           ]}
         >
-          <Input />
+          <Input size="large" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" block loading={forgotPasswordMutation.isPending}>
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            block
+            loading={forgotPasswordMutation.isPending}
+          >
             {t('auth.sendResetLink')}
           </Button>
         </Form.Item>

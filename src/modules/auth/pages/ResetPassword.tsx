@@ -36,7 +36,7 @@ const ResetPassword = () => {
   }
 
   return (
-    <Card style={{ width: 400 }}>
+    <Card style={{ maxWidth: 400, width: '100%' }}>
       <Title level={3} style={{ textAlign: 'center' }}>
         {t('auth.resetPassword')}
       </Title>
@@ -46,7 +46,7 @@ const ResetPassword = () => {
           name="password"
           rules={[{ required: true, message: t('auth.validation.passwordRequired') }]}
         >
-          <Input.Password />
+          <Input.Password size="large" />
         </Form.Item>
         <Form.Item
           label={t('auth.confirmPassword')}
@@ -64,10 +64,16 @@ const ResetPassword = () => {
             }),
           ]}
         >
-          <Input.Password />
+          <Input.Password size="large" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" block loading={resetPasswordMutation.isPending}>
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            block
+            loading={resetPasswordMutation.isPending}
+          >
             {t('auth.resetPassword')}
           </Button>
         </Form.Item>

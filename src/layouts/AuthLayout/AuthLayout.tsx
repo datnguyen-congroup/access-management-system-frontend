@@ -21,6 +21,7 @@ export const AuthLayout: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: 24,
       }}
     >
       <Outlet />

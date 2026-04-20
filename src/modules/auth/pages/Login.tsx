@@ -53,7 +53,7 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <Card style={{ width: 400, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+    <Card style={{ maxWidth: 400, width: '100%', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
         <Title level={3}>{t('auth.login')}</Title>
       </div>
