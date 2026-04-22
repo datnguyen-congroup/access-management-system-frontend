@@ -10,7 +10,9 @@
         "edit": "Edit",
         "create": "Create",
         "submit": "Submit",
-        "upload": "Upload"
+        "upload": "Upload",
+        "add": "Add",
+        "remove": "Remove"
       }
     },
     "auth": {

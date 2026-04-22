@@ -35,6 +35,40 @@ export const BasicForm: React.FC = () => {
     ],
     [
       {
+        name: 'users',
+        label: 'Users',
+        inputType: 'array',
+        fields: [
+          [
+            { name: 'name', label: 'Name', inputType: 'input' },
+            { name: 'age', label: 'Age', inputType: 'number' },
+          ],
+          [
+            {
+              name: 'child',
+              label: 'Child',
+              inputType: 'array',
+              fields: [
+                [
+                  {
+                    name: 'value',
+                    inputType: 'select',
+                    inputProps: {
+                      options: [
+                        { label: 'Type 1', value: '1' },
+                        { label: 'Type 2', value: '2' },
+                      ],
+                    },
+                  },
+                ],
+              ],
+            },
+          ],
+        ],
+      },
+    ],
+    [
+      {
         name: 'role',
         label: 'Role',
         inputType: 'select',

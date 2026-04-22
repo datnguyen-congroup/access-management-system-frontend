@@ -10,7 +10,9 @@
         "edit": "Sửa",
         "create": "Tạo",
         "submit": "Gửi đi",
-        "upload": "Upload"
+        "upload": "Upload",
+        "add": "Thêm",
+        "remove": "Xoá"
       }
     },
     "auth": {
