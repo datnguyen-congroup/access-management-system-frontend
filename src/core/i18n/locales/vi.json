@@ -9,7 +9,8 @@
         "delete": "Xóa",
         "edit": "Sửa",
         "create": "Tạo",
-        "submit": "Gửi đi"
+        "submit": "Gửi đi",
+        "upload": "Upload"
       }
     },
     "auth": {
