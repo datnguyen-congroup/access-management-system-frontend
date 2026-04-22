@@ -1,10 +1,18 @@
-import { Table, Button, Space, Typography, Card } from 'antd';
+import { Button, Card, Space, Typography } from 'antd';
 import React from 'react';
 
-import { APP_PERMISSIONS } from '../../../app/permissions';
-import { PermissionGuard } from '../../../core/permissions/PermissionGuard';
+import { APP_PERMISSIONS } from '@/app/permissions';
+import { PermissionGuard } from '@/core/permissions/PermissionGuard';
+import { ResponsiveTable, ResponsiveTableProps } from '@/shared/ui/table/ResponsiveTable';
 
 const { Title } = Typography;
+
+type User = {
+  key: string;
+  name: string;
+  email: string;
+  role: string;
+};
 
 export const UserList: React.FC = () => {
   const dataSource = [
@@ -12,7 +20,7 @@ export const UserList: React.FC = () => {
     { key: '2', name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
   ];
 
-  const columns = [
+  const columns: ResponsiveTableProps<User>['columns'] = [
     { title: 'Name', dataIndex: 'name', key: 'name' },
     { title: 'Email', dataIndex: 'email', key: 'email' },
     { title: 'Role', dataIndex: 'role', key: 'role' },
@@ -44,7 +52,19 @@ export const UserList: React.FC = () => {
           <Button type="primary">Add User</Button>
         </PermissionGuard>
       </div>
-      <Table dataSource={dataSource} columns={columns} />
+      <ResponsiveTable<User>
+        columns={columns}
+        dataSource={dataSource}
+        rowKey="id"
+        loading={false}
+        pagination={{ current: 1, pageSize: 10, total: 100 }}
+        // mobileRender={(record) => (
+        //   <>
+        //     <div style={{ fontWeight: 600 }}>{record.name}</div>
+        //     <div>{record.role}</div>
+        //   </>
+        // )}
+      />
     </Card>
   );
 };
