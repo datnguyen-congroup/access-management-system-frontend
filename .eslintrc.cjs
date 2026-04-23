@@ -57,24 +57,7 @@ module.exports = {
      */
     'import/default': 'off',
     'import/no-unresolved': 'off',
-    'import/order': [
-      'warn',
-      {
-        groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index']],
-        pathGroups: [
-          {
-            pattern: '@/**',
-            group: 'internal',
-          },
-        ],
-        pathGroupsExcludedImportTypes: ['builtin'],
-        'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
-      },
-    ],
+    'import/order': 'off',
     'unused-imports/no-unused-imports': 'error',
 
     'unused-imports/no-unused-vars': [
