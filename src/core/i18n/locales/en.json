@@ -12,7 +12,26 @@
         "submit": "Submit",
         "upload": "Upload",
         "add": "Add",
-        "remove": "Remove"
+        "remove": "Remove",
+        "refetch": "Refetch"
+      },
+      "form": {
+        "title": {
+          "name": "Name",
+          "steps": "steps",
+          "version": "Version",
+          "order": "Order",
+          "description": "Description"
+        },
+        "validation": {}
+      },
+      "table": {
+        "title": {
+          "name": "Name",
+          "version": "Version",
+          "status": "Status",
+          "action": "Action"
+        }
       }
     },
     "auth": {
@@ -48,10 +67,12 @@
       "formsBasic": "Basic Form",
       "list": "List Pages",
       "listStandard": "Standard List",
-      "workflowManagement": "Workflow management"
-    },
-    "workflow": {
-      "workflow": "workflow"
+      "workflow": {
+        "management": "Workflow Management",
+        "list": "Workflow List",
+        "create": "Create Workflow",
+        "edit": "Edit Workflow"
+      }
     }
   }
 }

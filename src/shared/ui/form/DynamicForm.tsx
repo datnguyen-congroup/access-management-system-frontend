@@ -1,6 +1,7 @@
 import { UploadOutlined } from '@ant-design/icons';
 import {
   Button,
+  Card,
   Checkbox,
   CheckboxProps,
   Col,
@@ -25,8 +26,12 @@ import {
 } from 'antd';
 import { RangePickerProps } from 'antd/es/date-picker';
 import type { FormInstance, Rule } from 'antd/es/form';
+import { TextAreaProps } from 'antd/es/input';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
+const { TextArea } = Input;
+
 type InputTypeMap = {
   input: InputProps;
   number: InputNumberProps;
@@ -37,6 +42,7 @@ type InputTypeMap = {
   radio: RadioGroupProps;
   switch: SwitchProps;
   upload: UploadProps;
+  textarea: TextAreaProps;
 };
 
 type BaseField = {
@@ -61,6 +67,7 @@ type FieldSchema =
   | (BaseField & { inputType: 'radio'; inputProps?: InputTypeMap['radio'] })
   | (BaseField & { inputType: 'switch'; inputProps?: InputTypeMap['switch'] })
   | (BaseField & { inputType: 'upload'; inputProps?: InputTypeMap['upload'] })
+  | (BaseField & { inputType: 'textarea'; inputProps?: InputTypeMap['textarea'] })
   | (BaseField & { inputType: 'custom'; render: () => React.ReactNode })
   | ArrayField;
 
@@ -85,6 +92,9 @@ export const DynamicForm = ({ schema, form, onFinish, buttons }: DynamicFormProp
     switch (field.inputType) {
       case 'input':
         return <Input {...field.inputProps} />;
+
+      case 'textarea':
+        return <TextArea {...field.inputProps} />;
 
       case 'number':
         return <InputNumber style={{ width: '100%' }} {...field.inputProps} />;
@@ -165,7 +175,11 @@ export const DynamicForm = ({ schema, form, onFinish, buttons }: DynamicFormProp
       {(fields, { add, remove }) => (
         <>
           {fields.map((f) => (
-            <div key={f.key} style={{ marginBottom: 16, border: '1px solid #eee', padding: 12 }}>
+            <Card
+              key={f.key}
+              style={{ marginBottom: 16, padding: 24 }}
+              styles={{ body: { padding: 0 } }}
+            >
               {field.fields.map((row, rowIndex) => (
                 <Row gutter={16} key={rowIndex}>
                   {row.map((child) => {
@@ -202,7 +216,7 @@ export const DynamicForm = ({ schema, form, onFinish, buttons }: DynamicFormProp
                   {t('common.actions.remove')} {field.label}
                 </Button>
               </Flex>
-            </div>
+            </Card>
           ))}
 
           <Flex justify="center">

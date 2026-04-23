@@ -12,7 +12,26 @@
         "submit": "Gửi đi",
         "upload": "Upload",
         "add": "Thêm",
-        "remove": "Xoá"
+        "remove": "Xoá",
+        "refetch": "Tải lại"
+      },
+      "form": {
+        "title": {
+          "name": "Name",
+          "steps": "steps",
+          "version": "Version",
+          "order": "Order",
+          "description": "Description"
+        },
+        "validation": {}
+      },
+      "table": {
+        "title": {
+          "name": "Name",
+          "version": "Version",
+          "status": "Status",
+          "action": "Action"
+        }
       }
     },
     "auth": {
@@ -48,10 +67,12 @@
       "formsBasic": "Biểu mẫu cơ bản",
       "list": "Trang Danh sách",
       "listStandard": "Danh sách tiêu chuẩn",
-      "workflowManagement": "Quản lý quy trình làm việc"
-    },
-    "workflow": {
-      "workflow": "workflow"
+      "workflow": {
+        "management": "Quản lý quy trình làm việc",
+        "list": "Danh sách quy trình",
+        "create": "Tạo quy trình",
+        "edit": "Chỉnh sửa quy trình"
+      }
     }
   }
 }

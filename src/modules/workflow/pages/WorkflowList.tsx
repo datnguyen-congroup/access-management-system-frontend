@@ -1,40 +1,52 @@
-import { Button, Card, Space, Typography } from 'antd';
-import React from 'react';
-
 import { APP_PERMISSIONS } from '@/app/permissions';
+import { APP_ROUTES } from '@/app/settings';
 import { PermissionGuard } from '@/core/permissions/PermissionGuard';
+import { buildPath } from '@/core/utils';
 import { ResponsiveTable, ResponsiveTableProps } from '@/shared/ui/table/ResponsiveTable';
+import { ReloadOutlined } from '@ant-design/icons';
+import { Button, Card, Flex, Space, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 
 const { Title } = Typography;
 
 type User = {
   key: string;
   name: string;
-  email: string;
-  role: string;
+  version: string;
+  status: string;
 };
 
-const WorkflowList: React.FC = () => {
+const WorkflowList = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const dataSource = [
-    { key: '1', name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-    { key: '2', name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+    { key: '1', name: 'work 1', version: '1.0.1', status: 'active' },
+    { key: '2', name: 'work 2', version: '1.0.1', status: 'active' },
   ];
 
   const columns: ResponsiveTableProps<User>['columns'] = [
-    { title: 'Name', dataIndex: 'name', key: 'name' },
-    { title: 'Email', dataIndex: 'email', key: 'email' },
-    { title: 'Role', dataIndex: 'role', key: 'role' },
+    { title: t('common.table.title.name'), dataIndex: 'name', key: 'name' },
+    { title: t('common.table.title.version'), dataIndex: 'version', key: 'version' },
+    { title: t('common.table.title.status'), dataIndex: 'status', key: 'status' },
     {
-      title: 'Action',
+      title: t('common.table.title.action'),
       key: 'action',
       render: () => (
         <Space size="middle">
-          <PermissionGuard permissions={APP_PERMISSIONS.USERS_EDIT}>
-            <Button type="link">Edit</Button>
+          <PermissionGuard permissions={APP_PERMISSIONS.WORKFLOW_EDIT}>
+            <Button
+              type="primary"
+              variant="outlined"
+              onClick={() => navigate(buildPath(APP_ROUTES.workflow.detail, { id: 1 }))}
+            >
+              {t('common.actions.edit')}
+            </Button>
           </PermissionGuard>
-          <PermissionGuard permissions={APP_PERMISSIONS.USERS_DELETE}>
-            <Button type="link" danger>
-              Delete
+          <PermissionGuard permissions={APP_PERMISSIONS.WORKFLOW_DELETE}>
+            <Button danger variant="outlined">
+              {t('common.actions.delete')}
             </Button>
           </PermissionGuard>
         </Space>
@@ -44,26 +56,33 @@ const WorkflowList: React.FC = () => {
 
   return (
     <Card>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: 16,
+          flexWrap: 'wrap',
+          gap: 12,
+        }}
+      >
         <Title level={4} style={{ margin: 0 }}>
-          Users
+          {t('menu.workflow.list')}
         </Title>
-        <PermissionGuard permissions={APP_PERMISSIONS.USERS_CREATE}>
-          <Button type="primary">Add User</Button>
-        </PermissionGuard>
+        <Flex gap={12}>
+          <PermissionGuard permissions={APP_PERMISSIONS.WORKFLOW_CREATE}>
+            <Button type="primary" onClick={() => navigate(APP_ROUTES.workflow.create)}>
+              {t('common.actions.create')}
+            </Button>
+          </PermissionGuard>
+          <Button icon={<ReloadOutlined />}>{t('common.actions.refetch')}</Button>
+        </Flex>
       </div>
       <ResponsiveTable<User>
         columns={columns}
         dataSource={dataSource}
-        rowKey="id"
+        rowKey="key"
         loading={false}
         pagination={{ current: 1, pageSize: 10, total: 100 }}
-        // mobileRender={(record) => (
-        //   <>
-        //     <div style={{ fontWeight: 600 }}>{record.name}</div>
-        //     <div>{record.role}</div>
-        //   </>
-        // )}
       />
     </Card>
   );

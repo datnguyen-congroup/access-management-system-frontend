@@ -1,4 +1,10 @@
-import { DashboardOutlined, FormOutlined, TableOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  ApartmentOutlined,
+  DashboardOutlined,
+  FormOutlined,
+  TableOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
 import { APP_ROUTES } from './settings';
@@ -41,8 +47,18 @@ export const useAppMenu = () => {
     },
     {
       key: APP_ROUTES.workflow.index,
-      icon: <TableOutlined />,
-      label: t('menu.workflowManagement'),
+      icon: <ApartmentOutlined />,
+      label: t('menu.workflow.management'),
+      children: [
+        {
+          key: APP_ROUTES.workflow.list,
+          label: t('menu.workflow.list'),
+        },
+        {
+          key: APP_ROUTES.workflow.create,
+          label: t('menu.workflow.create'),
+        },
+      ],
     },
   ];
 };

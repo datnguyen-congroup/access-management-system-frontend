@@ -28,7 +28,8 @@ export const APP_ROUTES = {
   users: '/users',
   workflow: {
     index: '/workflow',
+    list: '/workflow/list',
     detail: '/workflow/:id',
     create: '/workflow/create',
   },
-};
+} as const;

@@ -11,6 +11,9 @@ export function buildPath<T extends string>(path: T, params: ExtractParams<T>): 
     const value = (params as any)[key];
 
     if (value == null) {
+      // if (__DEV__) {
+      //   throw new Error(`Missing param: ${key}`);
+      // }
       return '';
     }
 

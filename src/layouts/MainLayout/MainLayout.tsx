@@ -28,7 +28,7 @@ import { appSettings } from '@/app/settings';
 import { useAuthStore } from '@/core/store/authStore';
 import { useSettingsStore } from '@/core/store/settingsStore';
 import { useThemeStore } from '@/core/store/themeStore';
-import { AppBreadcrumb } from '@/shared/components/AppBreadcrumb';
+// import { AppBreadcrumb } from '@/shared/components/AppBreadcrumb';
 
 const { Header, Sider, Content } = Layout;
 const { Text } = Typography;
@@ -220,7 +220,7 @@ export const MainLayout: React.FC = () => {
         <Content
           style={{ margin: screens.xs ? '16px' : '24px', display: 'flex', flexDirection: 'column' }}
         >
-          {!screens.xs && <AppBreadcrumb />}
+          {/* {!screens.xs && <AppBreadcrumb />} */}
           <div
             style={{
               flex: 1,
