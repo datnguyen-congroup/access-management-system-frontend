@@ -1,4 +1,4 @@
-import { UploadOutlined } from '@ant-design/icons';
+import { DeleteOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import {
   Button,
   Card,
@@ -77,13 +77,20 @@ export interface DynamicFormProps {
   schema: FormSchema;
   form?: FormInstance;
   onFinish?: (values: Record<string, unknown>) => void;
+  initialValues?: Record<string, unknown>;
   buttons?: React.ReactNode;
 }
 
 const { useBreakpoint } = Grid;
 const { RangePicker } = DatePicker;
 
-export const DynamicForm = ({ schema, form, onFinish, buttons }: DynamicFormProps) => {
+export const DynamicForm = ({
+  schema,
+  form,
+  onFinish,
+  initialValues,
+  buttons,
+}: DynamicFormProps) => {
   const screens = useBreakpoint();
   const isMobile = !screens.md;
   const { t } = useTranslation();
@@ -134,93 +141,50 @@ export const DynamicForm = ({ schema, form, onFinish, buttons }: DynamicFormProp
     }
   };
 
-  const renderNestedArray = (field: ArrayField, parentIndex: number) => (
-    <Form.List name={[parentIndex, field.name]}>
+  /**
+   * Render a recursive array field using Form.List
+   */
+  const renderArray = (field: ArrayField, namePath: (string | number)[], depth: number) => (
+    <Form.List name={namePath}>
       {(fields, { add, remove }) => (
         <>
-          {fields.map((f) => (
-            <div key={f.key} style={{ marginBottom: 8 }}>
+          {fields.map((f, index) => (
+            <Card
+              key={f.key}
+              size="small"
+              title={field.label ? `${field.label} #${index + 1}` : undefined}
+              extra={
+                <Button
+                  type="text"
+                  danger
+                  icon={<DeleteOutlined />}
+                  onClick={() => remove(f.name)}
+                />
+              }
+              style={{ marginBottom: 16 }}
+              styles={{ body: { padding: '16px 24px' } }}
+            >
               {field.fields.map((row, rowIndex) => (
-                <Row gutter={8} key={rowIndex}>
+                <Row gutter={16} key={rowIndex}>
                   {row.map((child) => (
-                    <Col span={24} key={child.name}>
-                      <Form.Item name={[f.name, child.name]} rules={child.rules}>
-                        {renderInput(child)}
-                      </Form.Item>
+                    <Col key={child.name} span={isMobile ? 24 : (child.colSpan ?? 24 / row.length)}>
+                      {/* Recursive call to render child fields */}
+                      {renderField(child, [f.name, child.name], depth + 1)}
                     </Col>
                   ))}
                 </Row>
               ))}
-
-              <Flex justify="flex-end">
-                <Button danger onClick={() => remove(f.name)}>
-                  {t('common.actions.remove')} {field.label}
-                </Button>
-              </Flex>
-            </div>
-          ))}
-
-          <Flex justify="center">
-            <Button type="dashed" onClick={() => add()}>
-              {t('common.actions.add')} {field.label}
-            </Button>
-          </Flex>
-        </>
-      )}
-    </Form.List>
-  );
-
-  const renderArrayField = (field: ArrayField) => (
-    <Form.List name={field.name}>
-      {(fields, { add, remove }) => (
-        <>
-          {fields.map((f) => (
-            <Card
-              key={f.key}
-              style={{ marginBottom: 16, padding: 24 }}
-              styles={{ body: { padding: 0 } }}
-            >
-              {field.fields.map((row, rowIndex) => (
-                <Row gutter={16} key={rowIndex}>
-                  {row.map((child) => {
-                    const isCheckboxOrSwitch =
-                      child.inputType === 'checkbox' || child.inputType === 'switch';
-
-                    return (
-                      <Col
-                        key={child.name}
-                        span={isMobile ? 24 : (child.colSpan ?? 24 / row.length)}
-                      >
-                        <Form.Item
-                          name={[f.name, child.name]}
-                          label={child.label}
-                          rules={child.rules}
-                          valuePropName={isCheckboxOrSwitch ? 'checked' : undefined}
-                          getValueFromEvent={
-                            child.inputType === 'upload' ? (e) => e.fileList : undefined
-                          }
-                        >
-                          {/* support nested array */}
-                          {child.inputType === 'array'
-                            ? renderNestedArray(child, f.name)
-                            : renderInput(child)}
-                        </Form.Item>
-                      </Col>
-                    );
-                  })}
-                </Row>
-              ))}
-
-              <Flex justify="flex-end">
-                <Button danger onClick={() => remove(f.name)}>
-                  {t('common.actions.remove')} {field.label}
-                </Button>
-              </Flex>
             </Card>
           ))}
 
           <Flex justify="center">
-            <Button type="dashed" onClick={() => add()} block>
+            <Button
+              type="dashed"
+              onClick={() => add()}
+              block
+              icon={<PlusOutlined />}
+              style={{ marginBottom: 16 }}
+            >
               {t('common.actions.add')} {field.label}
             </Button>
           </Flex>
@@ -229,28 +193,47 @@ export const DynamicForm = ({ schema, form, onFinish, buttons }: DynamicFormProp
     </Form.List>
   );
 
+  /**
+   * Helper to render any FieldSchema (Input or Array)
+   */
+  const renderField = (field: FieldSchema, namePath: (string | number)[], depth: number) => {
+    const isCheckboxOrSwitch = field.inputType === 'checkbox' || field.inputType === 'switch';
+
+    // Logic for labels: root (depth 0) and first-level array items (depth 1) show labels.
+    const label = depth > 1 ? undefined : field.label;
+
+    if (field.inputType === 'array') {
+      return (
+        <Form.Item name={namePath} label={label} rules={field.rules} style={{ marginBottom: 8 }}>
+          {renderArray(field, namePath, depth)}
+        </Form.Item>
+      );
+    }
+
+    return (
+      <Form.Item
+        name={namePath}
+        label={label}
+        rules={field.rules}
+        valuePropName={isCheckboxOrSwitch ? 'checked' : undefined}
+        getValueFromEvent={
+          field.inputType === 'upload' ? (e: { fileList: unknown[] }) => e.fileList : undefined
+        }
+      >
+        {renderInput(field)}
+      </Form.Item>
+    );
+  };
+
   return (
-    <Form form={form} layout="vertical" onFinish={onFinish}>
+    <Form form={form} layout="vertical" onFinish={onFinish} initialValues={initialValues} preserve>
       {schema.map((row, rowIndex) => (
         <Row gutter={16} key={rowIndex}>
-          {row.map((field) => {
-            const isCheckboxOrSwitch =
-              field.inputType === 'checkbox' || field.inputType === 'switch';
-
-            return (
-              <Col span={isMobile ? 24 : (field.colSpan ?? 24 / row.length)} key={field.name}>
-                <Form.Item
-                  name={field.name}
-                  label={field.label}
-                  rules={field.rules}
-                  valuePropName={isCheckboxOrSwitch ? 'checked' : undefined}
-                  getValueFromEvent={field.inputType === 'upload' ? (e) => e.fileList : undefined}
-                >
-                  {field.inputType === 'array' ? renderArrayField(field) : renderInput(field)}
-                </Form.Item>
-              </Col>
-            );
-          })}
+          {row.map((field) => (
+            <Col span={isMobile ? 24 : (field.colSpan ?? 24 / row.length)} key={field.name}>
+              {renderField(field, [field.name], 0)}
+            </Col>
+          ))}
         </Row>
       ))}
       {buttons}
