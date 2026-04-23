@@ -1,41 +1,48 @@
 import { DashboardOutlined, FormOutlined, TableOutlined, UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
+import { APP_ROUTES } from './settings';
+
 export const useAppMenu = () => {
   const { t } = useTranslation();
 
   return [
     {
-      key: '/dashboard',
+      key: APP_ROUTES.dashboard,
       icon: <DashboardOutlined />,
       label: t('menu.dashboard'),
     },
     {
-      key: '/forms',
+      key: APP_ROUTES.forms.index,
       icon: <FormOutlined />,
       label: t('menu.forms'),
       children: [
         {
-          key: '/forms/basic',
+          key: APP_ROUTES.forms.basic,
           label: t('menu.formsBasic'),
         },
       ],
     },
     {
-      key: '/list',
+      key: APP_ROUTES.list.index,
       icon: <TableOutlined />,
       label: t('menu.list'),
       children: [
         {
-          key: '/list/standard',
+          key: APP_ROUTES.list.standard,
           label: t('menu.listStandard'),
         },
       ],
     },
     {
-      key: '/users',
+      key: APP_ROUTES.users,
       icon: <UserOutlined />,
       label: t('menu.users'),
+    },
+    {
+      key: APP_ROUTES.workflow.index,
+      icon: <TableOutlined />,
+      label: t('menu.workflowManagement'),
     },
   ];
 };

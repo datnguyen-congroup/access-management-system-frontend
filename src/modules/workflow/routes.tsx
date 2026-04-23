@@ -3,15 +3,14 @@ import { RouteObject } from 'react-router';
 
 import { APP_PERMISSIONS } from '../../app/permissions';
 import { AuthGuard } from '../../core/router/AuthGuard';
-
-const UserList = lazy(() => import('./pages/UserList'));
+const WorkflowList = lazy(() => import('./pages/WorkflowList'));
 
 export const routes: RouteObject[] = [
   {
-    path: '/users',
+    path: '/workflow',
     element: (
       <AuthGuard requiredPermissions={[APP_PERMISSIONS.USERS_VIEW]}>
-        <UserList />
+        <WorkflowList />
       </AuthGuard>
     ),
   },

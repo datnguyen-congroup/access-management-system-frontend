@@ -1,13 +1,15 @@
 import { Breadcrumb } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router';
 
 export const AppBreadcrumb = () => {
   const location = useLocation();
+  const { t } = useTranslation();
   const pathSnippets = location.pathname.split('/').filter((i) => i);
 
   const breadcrumbItems = [
     {
-      title: <Link to="/">Home</Link>,
+      title: <Link to="/">{t('menu.home')}</Link>,
       key: 'home',
     },
     ...pathSnippets.map((_, index) => {

@@ -41,12 +41,17 @@
       }
     },
     "menu": {
+      "home": "Trang chủ",
       "dashboard": "Bảng điều khiển",
       "users": "Quản lý người dùng",
       "forms": "Trang Biểu mẫu",
       "formsBasic": "Biểu mẫu cơ bản",
       "list": "Trang Danh sách",
-      "listStandard": "Danh sách tiêu chuẩn"
+      "listStandard": "Danh sách tiêu chuẩn",
+      "workflowManagement": "Quản lý quy trình làm việc"
+    },
+    "workflow": {
+      "workflow": "workflow"
     }
   }
 }

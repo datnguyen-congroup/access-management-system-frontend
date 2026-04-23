@@ -1,5 +1,5 @@
 import { routes } from './routes';
 
-export const userModule = {
+export const workflowModule = {
   routes,
 };

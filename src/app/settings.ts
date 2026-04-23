@@ -14,3 +14,21 @@ export const appSettings = {
     enableMultiLanguage: true,
   },
 };
+
+export const APP_ROUTES = {
+  dashboard: '/dashboard',
+  forms: {
+    index: '/forms',
+    basic: '/forms/basic',
+  },
+  list: {
+    index: '/list',
+    standard: '/list/standard',
+  },
+  users: '/users',
+  workflow: {
+    index: '/workflow',
+    detail: '/workflow/:id',
+    create: '/workflow/create',
+  },
+};

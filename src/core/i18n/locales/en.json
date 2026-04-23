@@ -41,12 +41,17 @@
       }
     },
     "menu": {
+      "home": "Home",
       "dashboard": "Dashboard",
       "users": "User Management",
       "forms": "Form Pages",
       "formsBasic": "Basic Form",
       "list": "List Pages",
-      "listStandard": "Standard List"
+      "listStandard": "Standard List",
+      "workflowManagement": "Workflow management"
+    },
+    "workflow": {
+      "workflow": "workflow"
     }
   }
 }

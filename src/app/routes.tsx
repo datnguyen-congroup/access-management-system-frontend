@@ -13,6 +13,7 @@ import { errorModule } from '@/modules/errors';
 import { formsModule } from '@/modules/forms';
 import { listModule } from '@/modules/list';
 import { userModule } from '@/modules/user';
+import { workflowModule } from '@/modules/workflow';
 
 const Fallback = () => <div style={{ padding: 24, textAlign: 'center' }}>Loading...</div>;
 
@@ -66,6 +67,7 @@ export const router = createBrowserRouter([
       ...userModule.routes,
       ...formsModule.routes,
       ...listModule.routes,
+      ...workflowModule.routes,
     ].map((route) => ({
       ...route,
       element: withSuspense(route.element),
