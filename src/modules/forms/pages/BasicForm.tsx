@@ -1,7 +1,8 @@
-import { Card, Form, Input, DatePicker, Button, Space, Typography, message } from 'antd';
+import { Card, Form, Input, DatePicker, Button, Space, Typography } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { message } from '@/core/utils/antd';
 import { DynamicForm, DynamicFormProps } from '@/shared/ui/form/DynamicForm';
 
 const { Title, Text } = Typography;

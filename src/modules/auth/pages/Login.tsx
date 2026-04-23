@@ -1,10 +1,11 @@
-import { Form, Input, Button, Card, Typography, message } from 'antd';
+import { Form, Input, Button, Card, Typography } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router';
 
 import { appSettings } from '@/app/settings';
 import { useAuthStore } from '@/core/store/authStore';
+import { message } from '@/core/utils/antd';
 
 import { useLogin } from '../hooks';
 import { LoginRequest } from '../types';

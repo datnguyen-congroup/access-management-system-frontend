@@ -1,6 +1,7 @@
-import { Form, Typography, message } from 'antd';
+import { Form, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 
+import { message } from '@/core/utils/antd';
 import { WorkflowForm } from '../components/WorkflowForm';
 
 const { Title } = Typography;

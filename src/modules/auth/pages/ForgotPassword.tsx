@@ -1,7 +1,8 @@
-import { Button, Card, Form, Input, Typography, message } from 'antd';
+import { Button, Card, Form, Input, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
+import { message } from '@/core/utils/antd';
 import { useForgotPassword } from '../hooks';
 import { ForgotPasswordRequest } from '../types';
 
