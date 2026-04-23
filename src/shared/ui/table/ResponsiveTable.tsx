@@ -1,4 +1,4 @@
-import { Table, Card, Grid, Typography, Space, Skeleton, Empty, Pagination } from 'antd';
+import { Table, Card, Grid, Typography, Space, Skeleton, Empty, Pagination, Flex } from 'antd';
 import type { TableProps, ColumnsType } from 'antd/es/table';
 import React, { useMemo } from 'react';
 
@@ -125,17 +125,29 @@ function MobileCard<T extends Record<string, unknown>>(props: ResponsiveTablePro
 
           return (
             <Card key={key} size="small">
-              <Space direction="vertical" size={4} style={{ width: '100%' }}>
-                {mobileColumns.map((col) => {
+              <Space direction="vertical" size={0} style={{ width: '100%' }}>
+                {mobileColumns.map((col, idx) => {
                   const value = col.dataIndex !== undefined ? record[col.dataIndex] : undefined;
 
                   return (
-                    <div key={String(col.key || col.dataIndex)}>
-                      <Text type="secondary" style={{ fontSize: 12 }}>
-                        {col.title}
-                      </Text>
-                      <div>{renderCell(col, value, record, index)}</div>
-                    </div>
+                    <Card
+                      key={String(col.key || col.dataIndex)}
+                      style={{
+                        paddingBlock: 12,
+                        borderTop: 'none',
+                        borderInline: 'none',
+                        borderRadius: 0,
+                        borderBottom: mobileColumns.length - 1 === idx ? 'none' : undefined,
+                      }}
+                      styles={{ body: { padding: 0 } }}
+                    >
+                      <Flex justify="space-between">
+                        <Text type="secondary" style={{ fontSize: 12 }}>
+                          {col.title}
+                        </Text>
+                        <div>{renderCell(col, value, record, index)}</div>
+                      </Flex>
+                    </Card>
                   );
                 })}
               </Space>
