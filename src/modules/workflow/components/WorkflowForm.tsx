@@ -2,36 +2,55 @@ import { Button, Card, Form, FormInstance, Space } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { DynamicForm, DynamicFormProps } from '@/shared/ui/form/DynamicForm';
 import { useMemo } from 'react';
+import { FormInputEnum, FormInputValue } from '@/shared/ui/form/types';
+
+export type WorkflowStep = {
+  name: FormInputValue<FormInputEnum.input>;
+  order?: FormInputValue<FormInputEnum.number>;
+  description?: FormInputValue<FormInputEnum.textarea>;
+  steps2?: {
+    description?: FormInputValue<FormInputEnum.textarea>;
+    items?: {
+      description?: FormInputValue<FormInputEnum.textarea>;
+    }[];
+  }[];
+};
+
+export type WorkflowValues = {
+  name: FormInputValue<FormInputEnum.input>;
+  version?: FormInputValue<FormInputEnum.number>;
+  steps: WorkflowStep[];
+};
 
 export const WorkflowForm = ({
   form,
   onFinish,
 }: {
-  form: FormInstance;
-  onFinish: (values: Record<string, unknown>) => void;
+  form: FormInstance<WorkflowValues>;
+  onFinish: (values: WorkflowValues) => void;
 }) => {
   const { t } = useTranslation();
 
-  const schema: DynamicFormProps['schema'] = useMemo(
+  const schema: DynamicFormProps<WorkflowValues>['schema'] = useMemo(
     () => [
       [
         {
           name: 'name',
           label: t('common.form.title.name'),
-          inputType: 'input',
+          inputType: FormInputEnum.input,
           rules: [{ required: true }],
         },
         {
           name: 'version',
           label: t('common.form.title.version'),
-          inputType: 'number',
+          inputType: FormInputEnum.number,
         },
       ],
       [
         {
           name: 'steps',
           label: t('common.form.title.steps'),
-          inputType: 'array',
+          inputType: FormInputEnum.array,
           rules: [
             {
               required: true,
@@ -42,46 +61,50 @@ export const WorkflowForm = ({
               {
                 name: 'name',
                 label: t('common.form.title.name'),
-                inputType: 'input',
+                inputType: FormInputEnum.input,
                 rules: [
                   {
                     required: true,
                   },
                 ],
               },
-              { name: 'order', label: t('common.form.title.order'), inputType: 'number' },
+              {
+                name: 'order',
+                label: t('common.form.title.order'),
+                inputType: FormInputEnum.number,
+              },
             ],
             [
               {
                 name: 'description',
                 label: t('common.form.title.description'),
-                inputType: 'textarea',
+                inputType: FormInputEnum.textarea,
               },
             ],
             [
               {
                 name: 'steps2',
                 label: 'level 2',
-                inputType: 'array',
+                inputType: FormInputEnum.array,
                 fields: [
                   [
                     {
                       name: 'description',
                       label: 'item level 2',
-                      inputType: 'textarea',
+                      inputType: FormInputEnum.textarea,
                     },
                   ],
                   [
                     {
                       name: 'items',
                       label: 'level 3',
-                      inputType: 'array',
+                      inputType: FormInputEnum.array,
                       fields: [
                         [
                           {
                             name: 'description',
                             label: 'item level 3',
-                            inputType: 'textarea',
+                            inputType: FormInputEnum.textarea,
                           },
                         ],
                       ],
@@ -94,12 +117,12 @@ export const WorkflowForm = ({
         },
       ],
     ],
-    [],
+    [t],
   );
 
   return (
     <Card>
-      <DynamicForm
+      <DynamicForm<WorkflowValues>
         schema={schema}
         form={form}
         onFinish={onFinish}

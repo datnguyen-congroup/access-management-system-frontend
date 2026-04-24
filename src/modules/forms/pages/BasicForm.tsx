@@ -1,59 +1,70 @@
-import { Card, Form, Input, DatePicker, Button, Space, Typography } from 'antd';
+import { Card, Form, Button, Space, Typography } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
 import { message } from '@/core/utils/antd';
 import { DynamicForm, DynamicFormProps } from '@/shared/ui/form/DynamicForm';
+import { FormInputEnum, FormInputValue } from '@/shared/ui/form/types';
 
 const { Title, Text } = Typography;
-const { TextArea } = Input;
-const { RangePicker } = DatePicker;
+
+interface BasicFormValues {
+  name: FormInputValue<FormInputEnum.input>;
+  age?: FormInputValue<FormInputEnum.number>;
+  users?: {
+    name: FormInputValue<FormInputEnum.input>;
+    age?: FormInputValue<FormInputEnum.number>;
+    child?: {
+      value: FormInputValue<FormInputEnum.select>;
+    }[];
+  }[];
+  role?: FormInputValue<FormInputEnum.select>;
+}
 
 export const BasicForm: React.FC = () => {
   const { t } = useTranslation();
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<BasicFormValues>();
 
-  const onFinish = (values: Record<string, unknown>) => {
+  const onFinish = (values: BasicFormValues) => {
     console.log('Form values:', values);
     message.success('Successfully submitted form!');
     form.resetFields();
   };
 
-  const schema: DynamicFormProps['schema'] = [
+  const schema: DynamicFormProps<BasicFormValues>['schema'] = [
     [
       {
         name: 'name',
         label: 'Name',
-        inputType: 'input',
+        inputType: FormInputEnum.input,
         rules: [{ required: true, message: 'Required' }],
         inputProps: {},
       },
       {
         name: 'age',
         label: 'Age',
-        inputType: 'number',
+        inputType: FormInputEnum.number,
       },
     ],
     [
       {
         name: 'users',
         label: 'Users',
-        inputType: 'array',
+        inputType: FormInputEnum.array,
         fields: [
           [
-            { name: 'name', label: 'Name', inputType: 'input' },
-            { name: 'age', label: 'Age', inputType: 'number' },
+            { name: 'name', label: 'Name', inputType: FormInputEnum.input },
+            { name: 'age', label: 'Age', inputType: FormInputEnum.number },
           ],
           [
             {
               name: 'child',
               label: 'Child',
-              inputType: 'array',
+              inputType: FormInputEnum.array,
               fields: [
                 [
                   {
                     name: 'value',
-                    inputType: 'select',
+                    inputType: FormInputEnum.select,
                     inputProps: {
                       options: [
                         { label: 'Type 1', value: '1' },
@@ -72,7 +83,7 @@ export const BasicForm: React.FC = () => {
       {
         name: 'role',
         label: 'Role',
-        inputType: 'select',
+        inputType: FormInputEnum.select,
         inputProps: {
           options: [
             { label: 'Admin', value: 'admin' },
@@ -85,7 +96,7 @@ export const BasicForm: React.FC = () => {
       {
         name: 'custom',
         label: 'Custom UI',
-        inputType: 'custom',
+        inputType: FormInputEnum.custom,
         render: () => <div>Anything here</div>,
       },
     ],
@@ -101,7 +112,7 @@ export const BasicForm: React.FC = () => {
         </Text>
       </div>
       <Card>
-        <DynamicForm
+        <DynamicForm<BasicFormValues>
           schema={schema}
           form={form}
           onFinish={onFinish}

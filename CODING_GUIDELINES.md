@@ -112,7 +112,71 @@ Strict Typescript is enforced via `tsconfig.json`.
 
 ---
 
-## 🚀 8. Git & Commit Conventions
+## 📝 8. Forms & Type Safety
+
+We use a custom wrapper around Ant Design's Form called `DynamicForm` (`src/shared/ui/form/DynamicForm.tsx`). It provides extreme type safety for both the schema and the form values.
+
+### Rule 1: Always use `FormInputValue` to define your form interfaces.
+
+Do not manually type your form values as `string`, `number`, or `dayjs.Dayjs`. Use the `FormInputValue` helper to map Ant Design input modes to exact TypeScript types. This ensures your data model stays in sync with your UI implementation.
+
+```typescript
+import { FormInputValue, FormInputEnum } from '@/shared/ui/form/types';
+
+interface MyFormValues {
+  // Input / Textarea -> string
+  title: FormInputValue<FormInputEnum.input>;
+
+  // Number -> number | null
+  age: FormInputValue<FormInputEnum.number>;
+
+  // Select (Single) -> string | number | boolean
+  role: FormInputValue<FormInputEnum.select>;
+
+  // Select (Multiple) -> (string | number | boolean)[]
+  tags: FormInputValue<FormInputEnum.select, true>;
+
+  // Checkbox (Single) -> boolean
+  isActive: FormInputValue<FormInputEnum.checkbox>;
+
+  // Checkbox.Group -> (string | number | boolean)[]
+  hobbies: FormInputValue<FormInputEnum.checkbox, true>;
+
+  // DatePicker -> dayjs.Dayjs | null
+  birthday: FormInputValue<FormInputEnum.date>;
+}
+```
+
+### Rule 2: Pass your interface to `DynamicForm` and `Form.useForm`.
+
+Once you define your interface, pass it as a generic type. The TypeScript compiler will automatically check if your `schema` array is valid and if your `inputType` matches your data type.
+
+```tsx
+// 1. Initialize Form with generic type
+const [form] = Form.useForm<MyFormValues>();
+
+// 2. Define schema with strict autocomplete
+const schema: DynamicFormProps<MyFormValues>['schema'] = [
+  [
+    {
+      name: 'title',
+      inputType: FormInputEnum.input, // ✅ Valid
+      // inputType: FormInputEnum.checkbox // ❌ TS Error: title must be boolean!
+    },
+  ],
+];
+
+// 3. Render Form
+<DynamicForm<MyFormValues>
+  schema={schema}
+  form={form}
+  onFinish={(values) => console.log(values.title)}
+/>;
+```
+
+---
+
+## 🚀 9. Git & Commit Conventions
 
 We use Husky and Commitlint to enforce standard commit messages.
 

@@ -2,15 +2,15 @@ import { Form, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import { message } from '@/core/utils/antd';
-import { WorkflowForm } from '../components/WorkflowForm';
+import { WorkflowForm, WorkflowValues } from '../components/WorkflowForm';
 
 const { Title } = Typography;
 
 const EditWorkflow = () => {
   const { t } = useTranslation();
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<WorkflowValues>();
 
-  const onFinish = (values: Record<string, unknown>) => {
+  const onFinish = (values: WorkflowValues) => {
     console.log('Form values:', values);
     message.success('Successfully submitted form!');
     form.resetFields();
