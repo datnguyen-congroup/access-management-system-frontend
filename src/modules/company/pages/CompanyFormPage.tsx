@@ -60,14 +60,14 @@ export const CompanyFormPage: React.FC = () => {
     if (isEditMode) {
       updateMutation.mutate(payload, {
         onSuccess: () => {
-          message.success(t('company.messages.updateSuccess', 'Cập nhật công ty thành công'));
+          message.success(t('company.messages.updateSuccess'));
           navigate('/company');
         },
       });
     } else {
       createMutation.mutate(payload, {
         onSuccess: () => {
-          message.success(t('company.messages.createSuccess', 'Thêm công ty thành công'));
+          message.success(t('company.messages.createSuccess'));
           navigate('/company');
         },
       });
@@ -78,27 +78,22 @@ export const CompanyFormPage: React.FC = () => {
     [
       {
         name: 'name',
-        label: t('company.fields.name', 'Tên công ty'),
+        label: t('company.fields.name'),
         inputType: FormInputEnum.input,
-        rules: [
-          { required: true, message: t('common.validation.required', 'Trường này là bắt buộc') },
-        ],
+        rules: [{ required: true, message: t('common.validation.required') }],
         colSpan: 24,
       },
     ],
     [
       {
         name: 'domain',
-        label: t('company.fields.domain', 'Domain'),
+        label: t('company.fields.domain'),
         inputType: FormInputEnum.input,
         rules: [
-          { required: true, message: t('common.validation.required', 'Trường này là bắt buộc') },
+          { required: true, message: t('common.validation.required') },
           {
             pattern: /^([a-z0-9_]+\.)+[a-z0-9_]+$/,
-            message: t(
-              'company.validation.domain',
-              'Phải có định dạng domain (VD: vn.condigital, com.apple)',
-            ),
+            message: t('company.validation.domain'),
           },
         ],
         colSpan: 12,
@@ -107,8 +102,23 @@ export const CompanyFormPage: React.FC = () => {
         name: 'taxID',
         label: t('company.fields.taxID', 'Mã số thuế'),
         inputType: FormInputEnum.input,
+        inputProps: {
+          maxLength: 14,
+          onKeyPress: (e: any) => {
+            if (!/[0-9-]/.test(e.key)) {
+              e.preventDefault();
+            }
+          },
+          onPaste: (e: any) => {
+            const pasteData = e.clipboardData.getData('text');
+            if (/[^0-9-]/.test(pasteData)) {
+              e.preventDefault();
+            }
+          },
+        },
         rules: [
-          { required: true, message: t('common.validation.required', 'Trường này là bắt buộc') },
+          { required: true, message: t('common.validation.required') },
+          { min: 10, message: t('company.validation.taxIDMin') },
         ],
         colSpan: 12,
       },
@@ -116,20 +126,18 @@ export const CompanyFormPage: React.FC = () => {
     [
       {
         name: 'hotline',
-        label: t('company.fields.hotline', 'Hotline'),
+        label: t('company.fields.hotline'),
         inputType: FormInputEnum.select,
         inputProps: {
           mode: 'tags',
-          placeholder: t('company.placeholder.hotline', 'Nhập số điện thoại và nhấn Enter'),
+          placeholder: t('company.placeholder.hotline'),
         },
-        rules: [
-          { required: true, message: t('common.validation.required', 'Trường này là bắt buộc') },
-        ],
+        rules: [{ required: true, message: t('common.validation.required') }],
         colSpan: 12,
       },
       {
         name: 'enabled',
-        label: t('company.fields.enabled', 'Kích hoạt'),
+        label: t('company.fields.enabled'),
         inputType: FormInputEnum.switch,
         colSpan: 12,
       },
@@ -137,33 +145,29 @@ export const CompanyFormPage: React.FC = () => {
     [
       {
         name: 'contract_address',
-        label: t('company.fields.contract_address', 'Địa chỉ ĐKKD'),
+        label: t('company.fields.contract_address'),
         inputType: FormInputEnum.input,
-        rules: [
-          { required: true, message: t('common.validation.required', 'Trường này là bắt buộc') },
-        ],
+        rules: [{ required: true, message: t('common.validation.required') }],
         colSpan: 24,
       },
     ],
     [
       {
         name: 'physical_address',
-        label: t('company.fields.physical_address', 'Địa chỉ thực'),
+        label: t('company.fields.physical_address'),
         inputType: FormInputEnum.input,
-        rules: [
-          { required: true, message: t('common.validation.required', 'Trường này là bắt buộc') },
-        ],
+        rules: [{ required: true, message: t('common.validation.required') }],
         colSpan: 24,
       },
     ],
     [
       {
         name: 'link_map_address',
-        label: t('company.fields.link_map_address', 'Link Google Map'),
+        label: t('company.fields.link_map_address'),
         inputType: FormInputEnum.input,
         rules: [
-          { required: true, message: t('common.validation.required', 'Trường này là bắt buộc') },
-          { type: 'url', message: t('company.validation.url', 'Phải có định dạng URL') },
+          { required: true, message: t('common.validation.required') },
+          { type: 'url', message: t('company.validation.url') },
         ],
         colSpan: 24,
       },
@@ -175,35 +179,29 @@ export const CompanyFormPage: React.FC = () => {
       <Row justify="space-between" align="middle" style={{ marginBottom: 24 }}>
         <Col>
           <Title level={4} style={{ margin: 0 }}>
-            {isEditMode
-              ? t('company.title.edit', 'Cập nhật công ty')
-              : t('company.title.create', 'Thêm mới công ty')}
+            {isEditMode ? t('company.titleEdit') : t('company.titleCreate')}
           </Title>
         </Col>
       </Row>
-      <Form form={form} layout="vertical" onFinish={onFinish} style={{ maxWidth: 800 }}>
-        <DynamicForm<CompanyFormValues>
-          schema={schema}
-          form={form}
-          onFinish={onFinish}
-          buttons={
-            <Form.Item style={{ marginTop: 24 }}>
-              <Space>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  loading={createMutation.isPending || updateMutation.isPending}
-                >
-                  {t('common.actions.save', 'Lưu')}
-                </Button>
-                <Button onClick={() => navigate('/company')}>
-                  {t('common.actions.cancel', 'Hủy')}
-                </Button>
-              </Space>
-            </Form.Item>
-          }
-        />
-      </Form>
+      <DynamicForm<CompanyFormValues>
+        schema={schema}
+        form={form}
+        onFinish={onFinish}
+        buttons={
+          <Form.Item style={{ marginTop: 24 }}>
+            <Space>
+              <Button
+                type="primary"
+                onClick={() => form.submit()}
+                loading={createMutation.isPending || updateMutation.isPending}
+              >
+                {t('common.actions.save')}
+              </Button>
+              <Button onClick={() => navigate('/company')}>{t('common.actions.cancel')}</Button>
+            </Space>
+          </Form.Item>
+        }
+      />
     </Card>
   );
 };

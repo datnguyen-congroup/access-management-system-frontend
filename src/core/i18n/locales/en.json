@@ -19,6 +19,9 @@
       "inactive": "Inactive",
       "viewOnMap": "View on map",
       "edit": "Update",
+      "validation": {
+        "required": "This field is required"
+      },
       "form": {
         "title": {
           "name": "Name",
@@ -27,7 +30,9 @@
           "order": "Order",
           "description": "Description"
         },
-        "validation": {}
+        "validation": {
+          "required": "This field is required"
+        }
       },
       "table": {
         "title": {
@@ -81,15 +86,34 @@
     },
     "company": {
       "title": "Company List",
+      "titleCreate": "Create Company",
+      "titleEdit": "Update Company",
       "fields": {
         "name": "Company Name",
+        "domain": "Domain",
         "taxID": "Tax ID",
         "hotline": "Hotline",
         "address": "Address",
-        "enabled": "Enabled"
+        "enabled": "Enabled",
+        "contract_address": "Business Address",
+        "physical_address": "Physical Address",
+        "link_map_address": "Google Maps Link"
       },
       "actions": {
         "create": "Add Company"
+      },
+      "placeholder": {
+        "hotline": "Enter phone number and press Enter"
+      },
+      "validation": {
+        "domain": "Must have a domain format (e.g., vn.condigital, com.apple)",
+        "url": "Must have a URL format",
+        "taxIDMin": "Tax ID must be between 10 and 14 characters",
+        "phone": "Invalid phone number (e.g., 0901234567, 19001560)"
+      },
+      "messages": {
+        "createSuccess": "Company created successfully",
+        "updateSuccess": "Company updated successfully"
       }
     }
   }

@@ -66,20 +66,20 @@ export const CompanyList: React.FC = () => {
 
   const columns: ResponsiveTableProps<Company>['columns'] = [
     {
-      title: t('company.fields.name', 'Tên công ty'),
+      title: t('company.fields.name'),
       dataIndex: 'name',
       key: 'name',
       width: 250,
       render: (name: string) => <Text strong>{name}</Text>,
     },
     {
-      title: t('company.fields.taxID', 'Mã số thuế'),
+      title: t('company.fields.taxID'),
       dataIndex: 'taxID',
       key: 'taxID',
       width: 130,
     },
     {
-      title: t('company.fields.hotline', 'Số điện thoại'),
+      title: t('company.fields.hotline'),
       dataIndex: 'hotline',
       key: 'hotline',
       width: 160,
@@ -96,7 +96,7 @@ export const CompanyList: React.FC = () => {
       ),
     },
     {
-      title: t('company.fields.address', 'Địa chỉ'),
+      title: t('company.fields.address'),
       dataIndex: 'physical_address',
       key: 'physical_address',
       width: 350,
@@ -104,7 +104,7 @@ export const CompanyList: React.FC = () => {
         <Space align="start">
           <Text>{address}</Text>
           {record.link_map_address && (
-            <Tooltip title={t('common.viewOnMap', 'Xem trên bản đồ')}>
+            <Tooltip title={t('common.viewOnMap')}>
               <Link href={record.link_map_address} target="_blank">
                 <GlobalOutlined />
               </Link>
@@ -114,26 +114,26 @@ export const CompanyList: React.FC = () => {
       ),
     },
     {
-      title: t('company.fields.enabled', 'Kích hoạt'),
+      title: t('company.fields.enabled'),
       dataIndex: 'enabled',
       key: 'enabled',
       align: 'center',
       width: 120,
       render: (enabled: boolean) => (
         <Tag color={enabled ? 'success' : 'error'}>
-          {enabled ? t('common.active', 'Kích hoạt') : t('common.inactive', 'Không kích hoạt')}
+          {enabled ? t('common.active') : t('common.inactive')}
         </Tag>
       ),
     },
     {
-      title: t('common.table.title.action', 'Thao tác'),
+      title: t('common.table.title.action'),
       key: 'actions',
       align: 'center',
       width: 100,
       render: (_, record: Company) => (
         <Space size="middle">
           <PermissionGuard permissions={APP_PERMISSIONS.COMPANY_EDIT}>
-            <Tooltip title={t('common.edit', 'Cập nhật')}>
+            <Tooltip title={t('common.edit')}>
               <Button type="link" icon={<EditOutlined />} onClick={() => handleEdit(record)} />
             </Tooltip>
           </PermissionGuard>
@@ -158,11 +158,11 @@ export const CompanyList: React.FC = () => {
     <Card bordered={false}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24 }}>
         <Title level={4} style={{ margin: 0 }}>
-          {t('company.title', 'Danh sách công ty')}
+          {t('company.title')}
         </Title>
         <PermissionGuard permissions={APP_PERMISSIONS.COMPANY_CREATE}>
           <Button type="primary" onClick={() => navigate('/company/create')}>
-            {t('company.actions.create', 'Thêm công ty')}
+            {t('company.actions.create')}
           </Button>
         </PermissionGuard>
       </div>
