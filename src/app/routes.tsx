@@ -8,6 +8,7 @@ import { AuthLayout } from '@/layouts/AuthLayout/AuthLayout';
 import { ErrorLayout } from '@/layouts/ErrorLayout/ErrorLayout';
 import { MainLayout } from '@/layouts/MainLayout/MainLayout';
 import { authModule } from '@/modules/auth';
+import { companyModule } from '@/modules/company';
 import { dashboardModule } from '@/modules/dashboard';
 import { errorModule } from '@/modules/errors';
 import { formsModule } from '@/modules/forms';
@@ -68,6 +69,7 @@ export const router = createBrowserRouter([
       ...formsModule.routes,
       ...listModule.routes,
       ...workflowModule.routes,
+      ...companyModule.routes,
     ].map((route) => ({
       ...route,
       element: withSuspense(route.element),

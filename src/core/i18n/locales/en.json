@@ -15,6 +15,10 @@
         "remove": "Remove",
         "refetch": "Refetch"
       },
+      "active": "Active",
+      "inactive": "Inactive",
+      "viewOnMap": "View on map",
+      "edit": "Update",
       "form": {
         "title": {
           "name": "Name",
@@ -72,7 +76,22 @@
         "list": "Workflow List",
         "create": "Create Workflow",
         "edit": "Edit Workflow"
+      },
+      "company": "Company Management"
+    },
+    "company": {
+      "title": "Company List",
+      "fields": {
+        "name": "Company Name",
+        "taxID": "Tax ID",
+        "hotline": "Hotline",
+        "address": "Address",
+        "enabled": "Enabled"
+      },
+      "actions": {
+        "create": "Add Company"
       }
     }
   }
 }
+
