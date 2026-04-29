@@ -32,4 +32,5 @@ export const APP_ROUTES = {
     detail: '/workflow/:id',
     create: '/workflow/create',
   },
+  company: '/company',
 } as const;

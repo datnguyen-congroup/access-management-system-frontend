@@ -1,5 +1,6 @@
 import {
   ApartmentOutlined,
+  BankOutlined,
   DashboardOutlined,
   FormOutlined,
   TableOutlined,
@@ -44,6 +45,11 @@ export const useAppMenu = () => {
       key: APP_ROUTES.users,
       icon: <UserOutlined />,
       label: t('menu.users'),
+    },
+    {
+      key: APP_ROUTES.company,
+      icon: <BankOutlined />,
+      label: t('menu.company', 'Quản lý công ty'),
     },
     {
       key: APP_ROUTES.workflow.index,

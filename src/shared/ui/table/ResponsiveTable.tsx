@@ -12,10 +12,10 @@ export interface ExtendedColumn<T> {
   dataIndex?: keyof T;
   key?: Key;
   title?: React.ReactNode;
-  render?: (value: unknown, record: T, index: number) => React.ReactNode;
+  render?: (value: any, record: T, index: number) => React.ReactNode;
 }
 
-export interface ResponsiveTableProps<T extends Record<string, unknown>> extends Omit<
+export interface ResponsiveTableProps<T extends Record<string, any>> extends Omit<
   TableProps<T>,
   'columns'
 > {

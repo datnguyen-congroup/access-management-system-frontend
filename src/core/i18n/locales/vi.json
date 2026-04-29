@@ -15,6 +15,13 @@
         "remove": "Xoá",
         "refetch": "Tải lại"
       },
+      "active": "Kích hoạt",
+      "inactive": "Không kích hoạt",
+      "viewOnMap": "Xem trên bản đồ",
+      "edit": "Cập nhật",
+      "validation": {
+        "required": "Trường này là bắt buộc"
+      },
       "form": {
         "title": {
           "name": "Name",
@@ -23,14 +30,16 @@
           "order": "Order",
           "description": "Description"
         },
-        "validation": {}
+        "validation": {
+          "required": "Trường này là bắt buộc"
+        }
       },
       "table": {
         "title": {
           "name": "Name",
           "version": "Version",
-          "status": "Status",
-          "action": "Action"
+          "status": "Trạng thái",
+          "action": "Thao tác"
         }
       }
     },
@@ -72,6 +81,39 @@
         "list": "Danh sách quy trình",
         "create": "Tạo quy trình",
         "edit": "Chỉnh sửa quy trình"
+      },
+      "company": "Quản lý công ty"
+    },
+    "company": {
+      "title": "Danh sách công ty",
+      "titleCreate": "Thêm mới công ty",
+      "titleEdit": "Cập nhật công ty",
+      "fields": {
+        "name": "Tên công ty",
+        "domain": "Domain",
+        "taxID": "Mã số thuế",
+        "hotline": "Hotline",
+        "address": "Địa chỉ",
+        "enabled": "Kích hoạt",
+        "contract_address": "Địa chỉ đăng ký kinh doanh",
+        "physical_address": "Địa chỉ thực",
+        "link_map_address": "Link Google Map"
+      },
+      "actions": {
+        "create": "Thêm công ty"
+      },
+      "placeholder": {
+        "hotline": "Nhập số điện thoại và nhấn Enter"
+      },
+      "validation": {
+        "domain": "Phải có định dạng domain (VD: vn.condigital, com.apple)",
+        "url": "Phải có định dạng URL",
+        "taxIDMin": "Mã số thuế phải từ 10 đến 14 ký tự",
+        "phone": "Số điện thoại không hợp lệ (VD: 0901234567, 19001560)"
+      },
+      "messages": {
+        "createSuccess": "Thêm công ty thành công",
+        "updateSuccess": "Cập nhật công ty thành công"
       }
     }
   }

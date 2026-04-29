@@ -10,4 +10,9 @@ export const APP_PERMISSIONS = {
   WORKFLOW_CREATE: 'workflow.create',
   WORKFLOW_EDIT: 'workflow.edit',
   WORKFLOW_DELETE: 'workflow.delete',
+
+  COMPANY_VIEW: 'company.view',
+  COMPANY_CREATE: 'company.create',
+  COMPANY_EDIT: 'company.edit',
+  COMPANY_DELETE: 'company.delete',
 };
